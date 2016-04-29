@@ -1,7 +1,8 @@
 # SIN-WIKI
 SIN DOC 
+http://eteng-wiki.github.io/SIN-WIKI/
 
-robingao 2016-04-27
+init 2016-04-27
 
 more :http://eteng-wiki.github.io/ETENG-WIKI/about-wiki
 
