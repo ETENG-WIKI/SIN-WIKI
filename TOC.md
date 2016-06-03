@@ -1,4 +1,0 @@
-- [关于WIKI](index.md)
-- [开始](start.md)
-- [更多](moreinfo.md)
-- [联系我们](contact.md)
