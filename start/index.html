@@ -67,7 +67,17 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#_1">让我们开始吧</a></li>
+                <li class="toctree-l3"><a href="#gradle">Gradle使用</a></li>
+                
+                    <li><a class="toctree-l4" href="#gradle_1">Gradle安装</a></li>
+                
+                    <li><a class="toctree-l4" href="#gradleeclipse">Gradle和Eclipse搭建</a></li>
+                
+                    <li><a class="toctree-l4" href="#eclipsegradle">Eclipse和Gradle配置</a></li>
+                
+                    <li><a class="toctree-l4" href="#gradle_2">Gradle项目免提交内容配置</a></li>
+                
+                    <li><a class="toctree-l4" href="#_1">配置项目</a></li>
                 
             
             </ul>
@@ -121,7 +131,68 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_1">让我们开始吧</h1>
+                <h1 id="gradle">Gradle使用</h1>
+<h2 id="gradle_1">Gradle安装</h2>
+<p>Gradle官网 http://gradle.org/
+从Gradle官网下载Gradle安装文件，下载完成之后配置环境变量 方法同jdk
+检查gradle是否安装完成：gradle –v </p>
+<h2 id="gradleeclipse">Gradle和Eclipse搭建</h2>
+<ul>
+<li>
+<p>方法一：http://dist.springsource.com/release/TOOLS/gradle</p>
+<p>安装方法：
+Windows ---&gt;help---&gt;Install New Software</p>
+</li>
+<li>
+<p>方法二：http://marketplace.eclipse.org/content/gradle-ide-pack</p>
+<p>安装方法：
+打开上边网页拖拽到eclipse中 后续同方法一安装过程</p>
+<h2 id="eclipsegradle">Eclipse和Gradle配置</h2>
+</li>
+</ul>
+<p>Eclipse安装插件gradle之后配置</p>
+<ul>
+<li>
+<p>配置Gradle(STS)</p>
+<p>Windows---&gt;Preferences--&gt;Gradle(STS)</p>
+<p><img alt="配置Gradle(STS)" src="http://i.imgur.com/lRCG9mH.png" /></p>
+<p>Gradle Distribution folder:配置gradle安装目录</p>
+<p>Gradle User Home directory：自定义文件夹.gradle或者配置成gradle安装目录</p>
+</li>
+<li>
+<p>配置jdk</p>
+<p>展开Gradle(STS) 选择arguments如图所示</p>
+<p><img alt="配置Gradle(STS)---&gt;jdk" src="http://i.imgur.com/PB1WgJN.png" /></p>
+<p>选择右边Workspace JRE：选择所需要的jdk</p>
+</li>
+<li>
+<p>配置Gradle EnIDE</p>
+<p>Windows---&gt; Preferences---&gt;Gradle EnIDE
+<img alt="配置Gradle EnIDE" src="http://i.imgur.com/3Pc6Adc.png" /></p>
+<p>Gradle home to use:配置Gradle安装目录</p>
+<p>Alternative JAVA_HOME to use 配置jdk的安装目录</p>
+<h2 id="gradle_2">Gradle项目免提交内容配置</h2>
+</li>
+</ul>
+<p>Windows---&gt;Preferences---&gt;Team---&gt;Ignored Resources
+<img alt="gradle忽略提交部分文件" src="http://i.imgur.com/lZRWLVi.jpg" /></p>
+<p>根据项目团队要求配置忽略提交的文件或文件夹：build.gradle </p>
+<h2 id="_1">配置项目</h2>
+<p>项目地址：http://103.10.84.37/svn/VIS/VISReportBE/trunk</p>
+<p>检出后可自行体验 </p>
+<p>项目运行 使用gradle appStart（普通启动） 或者gradle appStartDebug（bug模式启动）</p>
+<p>使用gradleappStartDebug启动后需配置远程访问如下图</p>
+<p><img alt="" src="http://i.imgur.com/CoJEanj.jpg" /></p>
+<p>选择用红线选中的任意一个都可以 
+点开之后选择Debug Configurations或者Run Configurations</p>
+<p>这边选择的是第一个 走的是Debug Configurations如下图：</p>
+<p><img alt="" src="http://i.imgur.com/a8j7EFl.png" /></p>
+<p>选择 Remote Java Application右键New </p>
+<p><img alt="" src="http://i.imgur.com/oxSkvXJ.png" /></p>
+<p>Name:自定义名字建议和项目同名</p>
+<p>Project：选择自己使用的项目</p>
+<p>Host：项目所在服务器ip</p>
+<p>Port：appStartDebug启动时的端口号 一般为5005</p>
               
             </div>
           </div>
