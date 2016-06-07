@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>ElasticSearch - SIN 教程</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "ElasticSearch";
+    var mkdocs_page_input_path = "es.md";
+    var mkdocs_page_url = "/es/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> SIN 教程</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">关于WIKI</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../start/">开始</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../gradle/">Gradle</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">ElasticSearch</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#elasticsearch">安装elasticSearch</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_1">分词插件的安装与配置</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_2">配置索引库</a></li>
+                
+                    <li><a class="toctree-l4" href="#elastic-jdbc">elastic-jdbc</a></li>
+                
+                    <li><a class="toctree-l4" href="#restful-api">restful API导入</a></li>
+                
+                    <li><a class="toctree-l4" href="#bool">bool查询</a></li>
+                
+                    <li><a class="toctree-l4" href="#_3">分页</a></li>
+                
+                    <li><a class="toctree-l4" href="#_4">排序</a></li>
+                
+                    <li><a class="toctree-l4" href="#score">score初始化</a></li>
+                
+                    <li><a class="toctree-l4" href="#_5">展示数据配置</a></li>
+                
+                    <li><a class="toctree-l4" href="#_6">开始搜索</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../moreinfo/">更多</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../contact/">联系我们</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">SIN 教程</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>ElasticSearch</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="elasticsearch">安装elasticSearch</h2>
+<p>前提：安装java（至少是1.7），并配置环境变量</p>
+<p>首先，下载压缩包：</p>
+<pre><code>wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.1/elasticsearch-2.3.1.tar.gz
+</code></pre>
+
+<p>第二步，解压：</p>
+<pre><code>tar -xzvf elasticsearch-2.3.1.tar.gz
+</code></pre>
+
+<p>第三步，删除压缩包：</p>
+<pre><code>rm elasticsearch-2.3.1.tar.gz
+</code></pre>
+
+<p>第四步，移动目录到/opt/local：</p>
+<pre><code>mv elasticsearch-2.3.1 /opt/local
+cd /opt/local/elasticsearch-2.3.1
+</code></pre>
+
+<p>第五步，启动elasticSearch：</p>
+<pre><code>bin/elasticsearch -Des.insecure.allow.root=true
+</code></pre>
+
+<p>第六步，设置开机启动：</p>
+<p>用vi修改/etc/rc.d/rc.local这个文件，在文件中添加</p>
+<pre><code>/opt/local/elasticsearch-2.3.1/bin/elasticsearch -Des.insecure.allow.root=true
+</code></pre>
+
+<p>至此，elasticSearch安装完成。</p>
+<h2 id="_1">分词插件的安装与配置</h2>
+<p>第一步，到elasticSearch的安装目录:</p>
+<p>cd /opt/local/elasticsearch-2.3.1</p>
+<p>第二步，安装插件:</p>
+<pre><code>./bin/plugin install http://maven.nlpcn.org/org/ansj/elasticsearch-analysis-ansj/2.3.1/elasticsearch-analysis-ansj-2.3.1-release.zip
+</code></pre>
+
+<p>第三步，设置ansj作为默认分词器:</p>
+<pre><code>cd /opt/local/elasticsearch-2.3.1/config
+vi elasticsearch.yml
+</code></pre>
+
+<p>加入以下配置</p>
+<pre><code>
+#默认分词器,索引
+index.analysis.analyzer.default.type: index_ansj
+
+#默认分词器,查询
+index.analysis.analyzer.default_search.type: query_ansj
+
+</code></pre>
+
+<h1 id="_2">配置索引库</h1>
+<p>第一步 建立索引，并配置type（相当于数据表）</p>
+<pre><code>/**
+  * curl生成配置
+  * -d 后面是配置json
+  * 配置json DEMO:
+  * (wtd_worktrend为type，
+  *  index配置为not_analyzed时，不进行分词)
+  *  {
+  *    &quot;mappings&quot;: {
+  *      &quot;wtd_worktrend&quot;: {
+  *        &quot;properties&quot;: {
+  *          &quot;customer_name&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;
+  *          },
+  *          &quot;is_pub&quot;: {
+  *            &quot;type&quot;: &quot;long&quot;
+  *          },
+  *          &quot;region_area&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;
+  *          },
+  *          &quot;region_name&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;
+  *          },
+  *          &quot;spl_flag&quot;: {
+  *            &quot;type&quot;: &quot;long&quot;
+  *          },
+  *          &quot;wtd_address&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;
+  *          },
+  *          &quot;wtd_content&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;
+  *          },
+  *          &quot;wtd_name&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;
+  *          },
+  *          &quot;wtd_time&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;
+  *          },
+  *          &quot;from_code&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;,
+  *            &quot;index&quot;: &quot;not_analyzed&quot;
+  *          },
+  *          &quot;corp_id&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;,
+  *            &quot;index&quot;: &quot;not_analyzed&quot;
+  *          },
+  *          &quot;user_id&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;,
+  *            &quot;index&quot;: &quot;not_analyzed&quot;
+  *          },
+  *          &quot;cus_id&quot;: {
+  *            &quot;type&quot;: &quot;string&quot;,
+  *            &quot;index&quot;: &quot;not_analyzed&quot;
+  *          }
+  *        }
+  *      }
+  *    }
+  *  }
+  *
+  * http://localhost:9200/villagesale villagesale为索引名称
+  */
+curl -H 'Content-Type: application/json' -X PUT -d '{&quot;mappings&quot;:{&quot;wtd_worktrend&quot;:{&quot;properties&quot;:{&quot;customer_name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;is_pub&quot;:{&quot;type&quot;:&quot;long&quot;},&quot;region_area&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;region_name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;spl_flag&quot;:{&quot;type&quot;:&quot;long&quot;},&quot;wtd_address&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;wtd_content&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;wtd_name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;wtd_time&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;from_code&quot;:{&quot;type&quot;:&quot;string&quot;,&quot;index&quot;:&quot;not_analyzed&quot;},&quot;corp_id&quot;:{&quot;type&quot;:&quot;string&quot;,&quot;index&quot;:&quot;not_analyzed&quot;},&quot;user_id&quot;:{&quot;type&quot;:&quot;string&quot;,&quot;index&quot;:&quot;not_analyzed&quot;},&quot;cus_id&quot;:{&quot;type&quot;:&quot;string&quot;,&quot;index&quot;:&quot;not_analyzed&quot;}}}}}' http://localhost:9200/villagesale
+</code></pre>
+
+<p>返回数据为下面的结果时，则配置成功。</p>
+<pre><code>{&quot;acknowledged&quot;:true}
+</code></pre>
+
+<p>第二步 导入数据，请参考elasticSearch数据导入。</p>
+<p>以上出错的解决办法：
+删除索引库，然后重新走步骤一和二：</p>
+<pre><code>curl -X DELETE 'http://localhost:9200/villagesale'
+</code></pre>
+
+<p>返回数据为下面的结果时，则删除成功。</p>
+<pre><code>{&quot;acknowledged&quot;:true}
+</code></pre>
+
+<h2 id="elastic-jdbc">elastic-jdbc</h2>
+<p>第一步，获取压缩包：</p>
+<pre><code>wget http://xbib.org/repository/org/xbib/elasticsearch/importer/elasticsearch-jdbc/2.3.1.0/elasticsearch-jdbc-2.3.1.0-dist.zip
+</code></pre>
+
+<p>第二步，解压：</p>
+<pre><code>unzip elasticsearch-jdbc-2.3.1.0-dist.zip
+</code></pre>
+
+<p>第三步，删除压缩包文件：</p>
+<pre><code>rm elasticsearch-jdbc-2.3.1.0-dist.zip
+</code></pre>
+
+<p>第四步，移动文件到对应目录下：</p>
+<pre><code>mv elasticsearch-jdbc-2.3.1.0 /opt/local
+</code></pre>
+
+<p>第五步，新建一个sh文件：</p>
+<pre><code>cd /opt/local/elasticsearch-jdbc-2.3.1.0/bin
+
+touch jdbc.sh
+
+chmod +x jdbc.sh
+</code></pre>
+
+<p>第六步，修改sh文件(以下配置仅供参考，连接以及数据库等配置需按照情况修改)（如有报错，请升级java和javac到最新版本）：</p>
+<pre><code>#!/bin/bash
+
+JDBC_IMPORTER_HOME=&quot;/opt/local/elasticsearch-jdbc-2.3.1.0&quot;
+
+bin=$JDBC_IMPORTER_HOME/bin
+
+lib=$JDBC_IMPORTER_HOME/lib
+
+echo $bin
+
+echo $lib
+
+echo '{
+
+ &quot;type&quot; : &quot;jdbc&quot;,
+
+ &quot;jdbc&quot; : {
+
+ //增量更新：设置初始时间
+
+ &quot;metrics&quot; : {
+
+   &quot;lastexecutionstart&quot; : &quot;1990-01-01T00:00:00.000Z&quot;,
+
+ &quot;lastexecutionend&quot; : &quot;1990-01-01T00:00:00.000Z&quot;,
+
+ &quot;counter&quot; : 0//任务运行次数
+
+ },
+
+ //定时执行：0秒、每分钟、每小时、每天、每月、每星期
+
+ &quot;schedule&quot; : &quot;0 0-59 0-23 ? * *&quot;,
+
+ &quot;url&quot; : &quot;jdbc:mysql://192.168.0.50:3306/villagesale&quot;,
+
+ &quot;statefile&quot; : &quot;statefile.json&quot;,//状态文件，记住最后一次同步时间
+
+ &quot;user&quot; : &quot;****&quot;,
+
+ &quot;password&quot; : &quot;****&quot;,
+
+ &quot;sql&quot; : [
+
+ {
+
+ //主键作为index _id
+
+ &quot;statement&quot; : &quot;select *, wtd_id as _id from wtd_worktrend where ts &gt; ?&quot;,
+
+ &quot;parameter&quot; : [ &quot;$metrics.lastexecutionstart&quot; ]
+
+ },
+
+ {
+
+  //记住每次同步日志:每个表
+
+ &quot;statement&quot; : &quot;insert into elasticsearch_jdbc values(‘wtd_worktrend’,?,?,?,?,?,?,?,?,?)&quot;,
+
+ &quot;parameter&quot; : [
+
+ &quot;$job&quot;,//同一个表的同步次数
+
+ &quot;$now&quot;,
+
+ &quot;$state&quot;,
+
+ &quot;$metrics.counter&quot;,
+
+ &quot;$lastrowcount&quot;,//每次同步的记录条数
+
+ &quot;$lastexceptiondate&quot;,
+
+ &quot;$lastexception&quot;,
+
+ &quot;$metrics.lastexecutionstart&quot;,
+
+ &quot;$metrics.lastexecutionend&quot;
+
+ ]
+
+ }
+
+ ],
+
+ &quot;treat_binary_as_string&quot; : true,
+
+ &quot;elasticsearch&quot; : {
+
+ &quot;cluster&quot; : &quot;elasticsearch&quot;,
+
+ &quot;host&quot; : &quot;localhost&quot;,
+
+ &quot;port&quot; : 9300
+
+ },
+
+ &quot;index&quot; : &quot;villagesale&quot;,//对应mysql的数据库名
+
+ &quot;type&quot; : &quot;wtd_worktrend&quot;//对应mysql的表名
+
+  }
+
+}' | java \
+
+-cp &quot;${lib}/\*&quot; \
+
+-Dlog4j.configurationFile=${bin}/log4j2.xml \
+
+org.xbib.tools.Runner \
+
+org.xbib.tools.JDBCImporter
+
+</code></pre>
+
+<p>第七步，运行sh文件：</p>
+<pre><code>./jdbc.sh
+</code></pre>
+
+<p>现在，就可以自动同步数据库。可以根据需求将此脚本加入开机启动项。</p>
+<p>第八步，加入开机启动项：</p>
+<pre><code>vi /etc/rc.d/rc.local
+</code></pre>
+
+<p>追加代码</p>
+<pre><code>/opt/local/elasticsearch-jdbc-2.3.1.0/bin/marking-jdbc.sh
+
+</code></pre>
+
+<h2 id="restful-api">restful API导入</h2>
+<p>方式一 新增单条纪录
+方法： POST
+路径：域名/index名称/type名称/文档ID
+Body：JSONObject（对象里不要有_id的字段，否则报错）</p>
+<p>方式二 批量更新纪录
+待补充</p>
+<h2 id="bool">bool查询</h2>
+<p>Par1 概念介绍
+bool查询，常用的有三种：
+must 且查询，匹配程度是count大小依据
+should 或查询，匹配程度是count大小依据
+filter 且查询，匹配程度不作为count大小依据</p>
+<p>或查询，至少匹配一个条件：
+minimum_should_match 设置为1</p>
+<p>完整示例：</p>
+<pre><code>{
+  &quot;query&quot;:{
+    &quot;bool&quot;: {
+      &quot;must&quot;: [
+        {
+          &quot;match&quot;: {
+            &quot;field1&quot;: &quot;content1&quot;
+          }
+        }
+      ],
+      &quot;filter&quot;: [
+        {
+          &quot;match&quot;: {
+            &quot;field2&quot;: &quot;content2&quot;
+          }
+        }
+      ],
+      &quot;should&quot;: [
+        {
+          &quot;match&quot;: {
+            &quot;field3&quot;: &quot;content3&quot;
+          }
+        }
+      ],
+      &quot;minimum_should_match&quot;: 1
+    }
+  }
+}
+</code></pre>
+
+<h2 id="_3">分页</h2>
+<p>开始位置 from
+分页大小 size</p>
+<p>完整示例：</p>
+<pre><code>//从0～9
+{
+  &quot;from&quot;: 0,
+  &quot;size&quot;: 10
+}
+</code></pre>
+
+<h2 id="_4">排序</h2>
+<p>字段排序：</p>
+<pre><code>{
+  &quot;field&quot;: {
+    &quot;order&quot;: &quot;asc&quot;
+  }
+}
+</code></pre>
+
+<p>count排序：_score</p>
+<p>完整示例：</p>
+<pre><code>//根据field和score排序
+{
+  &quot;sort&quot;: [
+    {
+      &quot;field&quot;: {
+        &quot;order&quot;: &quot;asc&quot;
+      }
+    },
+    &quot;_score&quot;
+  ]
+}
+</code></pre>
+
+<h2 id="score">score初始化</h2>
+<pre><code>{
+  &quot;track_scores&quot;: 1
+}
+</code></pre>
+
+<h2 id="_5">展示数据配置</h2>
+<p>如果不配置，默认是全部字段</p>
+<pre><code>{
+  &quot;_source&quot;: [
+    &quot;field1&quot;,
+    &quot;field2&quot;
+  ]
+}
+</code></pre>
+
+<h2 id="_6">开始搜索</h2>
+<p>方法：POST
+路径：域名/index名称/type名称/_search?pretty
+数据：JSONObject
+数据示例：</p>
+<pre><code>{
+  &quot;query&quot;:{
+    &quot;bool&quot;: {
+      &quot;must&quot;: [
+        {
+          &quot;match&quot;: {
+            &quot;field1&quot;: &quot;content1&quot;
+          }
+        }
+      ],
+      &quot;filter&quot;: [
+        {
+          &quot;match&quot;: {
+            &quot;field2&quot;: &quot;content2&quot;
+          }
+        }
+      ],
+      &quot;should&quot;: [
+        {
+          &quot;match&quot;: {
+            &quot;field3&quot;: &quot;content3&quot;
+          }
+        }
+      ],
+      &quot;minimum_should_match&quot;: 1
+    }
+  },
+  &quot;from&quot;: 0,
+  &quot;size&quot;: 10,
+  &quot;sort&quot;: [
+    {
+      &quot;field&quot;: {
+        &quot;order&quot;: &quot;asc&quot;
+      }
+    },
+    &quot;_score&quot;
+  ],
+  &quot;track_scores&quot;: 1,
+  &quot;_source&quot;: [
+    &quot;field1&quot;,
+    &quot;field2&quot;
+  ]
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../moreinfo/" class="btn btn-neutral float-right" title="更多">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../gradle/" class="btn btn-neutral" title="Gradle"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../gradle/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../moreinfo/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
