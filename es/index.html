@@ -444,19 +444,19 @@ org.xbib.tools.JDBCImporter
 </code></pre>
 
 <h2 id="restful-api">restful API导入</h2>
-<p>方式一 新增单条纪录
-方法： POST
-路径：域名/index名称/type名称/文档ID
+<p>方式一 新增单条纪录<br />
+方法： POST<br />
+路径：域名/index名称/type名称/文档ID<br />
 Body：JSONObject（对象里不要有_id的字段，否则报错）</p>
-<p>方式二 批量更新纪录
+<p>方式二 批量更新纪录<br />
 待补充</p>
 <h2 id="bool">bool查询</h2>
-<p>Par1 概念介绍
-bool查询，常用的有三种：
-must 且查询，匹配程度是count大小依据
-should 或查询，匹配程度是count大小依据
+<p>Par1 概念介绍<br />
+bool查询，常用的有三种：<br />
+must 且查询，匹配程度是count大小依据<br />
+should 或查询，匹配程度是count大小依据<br />
 filter 且查询，匹配程度不作为count大小依据</p>
-<p>或查询，至少匹配一个条件：
+<p>或查询，至少匹配一个条件：<br />
 minimum_should_match 设置为1</p>
 <p>完整示例：</p>
 <pre><code>{
@@ -490,7 +490,7 @@ minimum_should_match 设置为1</p>
 </code></pre>
 
 <h2 id="_3">分页</h2>
-<p>开始位置 from
+<p>开始位置 from<br />
 分页大小 size</p>
 <p>完整示例：</p>
 <pre><code>//从0～9
@@ -541,9 +541,9 @@ minimum_should_match 设置为1</p>
 </code></pre>
 
 <h2 id="_6">开始搜索</h2>
-<p>方法：POST
-路径：域名/index名称/type名称/_search?pretty
-数据：JSONObject
+<p>方法：POST<br />
+路径：域名/index名称/type名称/_search?pretty<br />
+数据：JSONObject<br />
 数据示例：</p>
 <pre><code>{
   &quot;query&quot;:{
