@@ -31,3 +31,4 @@ SIN 平台使用教程
 
 * robin   
 * zxh
+* jrontend
