@@ -19,7 +19,7 @@ SIN 平台使用教程
 * 接口
 * 报表
 * 自动部署
-* elasticsearch
+* [elasticsearch](es.md)
 
 * [更多教程](moreinfo.md)
 
