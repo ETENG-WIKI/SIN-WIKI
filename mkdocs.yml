@@ -2,6 +2,7 @@ site_name: SIN 教程
 pages:
 - 关于WIKI: index.md
 - 开始: start.md
+- Gradle: gradle.md
 - 更多: moreinfo.md
 - 联系我们: contact.md
 theme: readthedocs

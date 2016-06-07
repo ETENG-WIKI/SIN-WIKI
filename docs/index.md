@@ -11,7 +11,7 @@ SIN 平台使用教程
 * 环境搭建
 * [开始 DEMO](start.md)
 * 配置详解
-* gradle进阶
+* [Gradle](gradle.md)
 * VO
 * DMO
 * RESTful
@@ -19,6 +19,7 @@ SIN 平台使用教程
 * 接口
 * 报表
 * 自动部署
+* elasticsearch
 
 * [更多教程](moreinfo.md)
 
@@ -29,4 +30,4 @@ SIN 平台使用教程
 #贡献者
 
 * robin   
-* more... join us 
+* zxh
