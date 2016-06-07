@@ -334,22 +334,22 @@ vi /etc/rc.d/rc.local
 ```
 
 ## restful API导入
-方式一 新增单条纪录
-方法： POST
-路径：域名/index名称/type名称/文档ID
+方式一 新增单条纪录  
+方法： POST  
+路径：域名/index名称/type名称/文档ID  
 Body：JSONObject（对象里不要有_id的字段，否则报错）
 
-方式二 批量更新纪录
+方式二 批量更新纪录  
 待补充
 
 ## bool查询
-Par1 概念介绍
-bool查询，常用的有三种：
-must 且查询，匹配程度是count大小依据
-should 或查询，匹配程度是count大小依据
+Par1 概念介绍  
+bool查询，常用的有三种：  
+must 且查询，匹配程度是count大小依据  
+should 或查询，匹配程度是count大小依据  
 filter 且查询，匹配程度不作为count大小依据
 
-或查询，至少匹配一个条件：
+或查询，至少匹配一个条件：  
 minimum_should_match 设置为1
 
 完整示例：
@@ -385,7 +385,7 @@ minimum_should_match 设置为1
 ```
 
 ## 分页
-开始位置 from
+开始位置 from  
 分页大小 size
 
 完整示例：
@@ -443,9 +443,9 @@ count排序：_score
 ```
 
 ## 开始搜索
-方法：POST
-路径：域名/index名称/type名称/_search?pretty
-数据：JSONObject
+方法：POST  
+路径：域名/index名称/type名称/_search?pretty  
+数据：JSONObject  
 数据示例：
 ```
 {
